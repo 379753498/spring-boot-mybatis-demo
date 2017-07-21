@@ -1,11 +1,15 @@
 package xyz.ibenben.zhongdian.system.controller;
 
+import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import xyz.ibenben.zhongdian.system.dao.UserDao;
+import xyz.ibenben.zhongdian.system.entity.User;
 import xyz.ibenben.zhongdian.system.service.UserService;
 
 @Controller
@@ -13,11 +17,59 @@ import xyz.ibenben.zhongdian.system.service.UserService;
 public class UserController {
 	@Autowired
 	private UserService userService;
-	
+	@Autowired
+
+
 	@RequestMapping("/regiester")
-	public String regiester(Map<String, Object> model){
-		userService.saveUser(null);
-		model.put("msg", "张三丰");		
+	public String regiester1(Map<String, Object> model){
+		
+//		User user = new User();
+//		user.setUsername("xujian");
+//		user.setPassword("123456");
+//		user.setState(0);
+////		List<User> selectByusername = userDao.selectByusername("xujian");
+////		for (User user2 : selectByusername) {
+////			 if (user2.getUsername().equals(user.getUsername()))
+////			{
+////				model.put("msg", "插入失败用户名已经存在");	
+////				return "regiester";
+////			}
+////		}
+////		if(model.get("msg")==null)
+////		{
+////			userService.saveUser(user);
+////			List<User> selectByusername2 = userDao.selectByusername(user.getUsername());
+////			
+////			model.put("msg", "添加成功");		
+////			return "regiester";
+////		}
+////		
+//		userService.saveUser(user);
+		
+		
+		
+		model.put("msg", "添加成功");		
 		return "regiester";
+		
+	
+		
 	}
+	
+	@RequestMapping("/regiester/{name}")
+	public String regiester11(Map<String, Object> model ,@PathVariable String name){
+		
+		List<String> getusername = userService.getusername(name);
+		
+		
+		
+		model.put("msg", getusername);		
+		return "regiester";
+		
+	
+		
+	}
+	
+	
+	
+	
 }
