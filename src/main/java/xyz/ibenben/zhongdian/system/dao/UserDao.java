@@ -4,6 +4,7 @@ package xyz.ibenben.zhongdian.system.dao;
 import java.util.List;
 
 import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.Update;
 
 import xyz.ibenben.zhongdian.common.BaseDao;
 import xyz.ibenben.zhongdian.system.entity.User;
@@ -19,5 +20,6 @@ public interface UserDao extends BaseDao<User>{
 	@Select("select username from user where username = #{username}")
 	public List<String> selectByusername1(String username);
 	
-	
+	@Update("update user set username = #{username}")
+	public int updatebyname(String username);
 }

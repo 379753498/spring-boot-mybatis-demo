@@ -68,7 +68,18 @@ public class UserController {
 	
 		
 	}
+	@RequestMapping("/update/{name}")
+	public String update(Map<String, Object> model ,@PathVariable String name){
+		
+		int update = userService.Update(name);
+		
+		
+		model.put("msg", update+"个已经被更新");		
+		return "regiester";
+		
 	
+		
+	}
 	
 	
 	

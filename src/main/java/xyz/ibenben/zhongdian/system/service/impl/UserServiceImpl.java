@@ -33,11 +33,19 @@ public class UserServiceImpl   implements UserService {
 
 	}
 
+	
 	public List<String> getusername(String name) {
 
 		
 		List<String> selectByusername1 = userDao.selectByusername1(name);
 		return selectByusername1;
+	}
+
+
+	public int Update(String name) {
+		
+		int updatebyname = userDao.updatebyname(name);
+		return updatebyname;
 	}
 
 

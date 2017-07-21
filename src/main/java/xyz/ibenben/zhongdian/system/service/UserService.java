@@ -8,4 +8,7 @@ public interface UserService {
 	public void saveUser(User user);
 	
 	public List<String> getusername(String name);
+	
+	
+	public int Update(String name);
 }
