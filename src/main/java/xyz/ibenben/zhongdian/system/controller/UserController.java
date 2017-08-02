@@ -9,13 +9,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
 import xyz.ibenben.zhongdian.system.dao.UserDao;
 import xyz.ibenben.zhongdian.system.entity.User;
 import xyz.ibenben.zhongdian.system.service.UserService;
 
-@Controller
+@RestController
 @RequestMapping("/system/user")
 public class UserController {
 	@Autowired
@@ -61,9 +62,14 @@ public class UserController {
 	
 	
 	@RequestMapping("/login")
-	public String  login(Map<String, Object> model){
-		model.put("he", "123");
-		return "1";
+	public User  login(){
+		User u = new User();
+		u.setPassword("123456");
+		u.setId(1);
+		u.setState(0);
+		u.setUsername("xujian");
+	System.out.println(u);
+		return u;
 	}
 	
 	
