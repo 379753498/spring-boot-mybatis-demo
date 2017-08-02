@@ -20,7 +20,7 @@ import java.util.Properties;
 public class MyBatisMapperScannerConfig {
 
     @Bean
-    public MapperScannerConfigurer mapperScannerConfigurer() {
+    public  static MapperScannerConfigurer mapperScannerConfigurer() {
         MapperScannerConfigurer mapperScannerConfigurer = new MapperScannerConfigurer();
         mapperScannerConfigurer.setSqlSessionFactoryBeanName("sqlSessionFactory");
         mapperScannerConfigurer.setBasePackage("xyz.ibenben.zhongdian.*.dao");

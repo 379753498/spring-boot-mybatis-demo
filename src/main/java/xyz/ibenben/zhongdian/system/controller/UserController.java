@@ -3,10 +3,13 @@ package xyz.ibenben.zhongdian.system.controller;
 import java.util.List;
 import java.util.Map;
 
+import net.minidev.json.JSONObject;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.ModelAndView;
 
 import xyz.ibenben.zhongdian.system.dao.UserDao;
 import xyz.ibenben.zhongdian.system.entity.User;
@@ -55,11 +58,20 @@ public class UserController {
 		
 	}
 	
+	
+	
+	@RequestMapping("/login")
+	public String  login(Map<String, Object> model){
+		model.put("he", "123");
+		return "1";
+	}
+	
+	
+	
 	@RequestMapping("/regiester/{name}")
 	public String regiester11(Map<String, Object> model ,@PathVariable String name){
 		
 		List<String> getusername = userService.getusername(name);
-		
 		
 		
 		model.put("msg", getusername);		
