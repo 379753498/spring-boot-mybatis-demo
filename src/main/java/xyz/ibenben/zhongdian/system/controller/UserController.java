@@ -3,12 +3,15 @@ package xyz.ibenben.zhongdian.system.controller;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
+
 import net.minidev.json.JSONObject;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -16,7 +19,7 @@ import xyz.ibenben.zhongdian.system.dao.UserDao;
 import xyz.ibenben.zhongdian.system.entity.User;
 import xyz.ibenben.zhongdian.system.service.UserService;
 
-@RestController
+@Controller
 @RequestMapping("/system/user")
 public class UserController {
 	@Autowired
@@ -27,29 +30,7 @@ public class UserController {
 	@RequestMapping("/regiester")
 	public String regiester1(Map<String, Object> model){
 		
-//		User user = new User();
-//		user.setUsername("xujian");
-//		user.setPassword("123456");
-//		user.setState(0);
-////		List<User> selectByusername = userDao.selectByusername("xujian");
-////		for (User user2 : selectByusername) {
-////			 if (user2.getUsername().equals(user.getUsername()))
-////			{
-////				model.put("msg", "插入失败用户名已经存在");	
-////				return "regiester";
-////			}
-////		}
-////		if(model.get("msg")==null)
-////		{
-////			userService.saveUser(user);
-////			List<User> selectByusername2 = userDao.selectByusername(user.getUsername());
-////			
-////			model.put("msg", "添加成功");		
-////			return "regiester";
-////		}
-////		
-//		userService.saveUser(user);
-		
+
 		
 		
 		model.put("msg", "添加成功");		
@@ -62,16 +43,38 @@ public class UserController {
 	
 	
 	@RequestMapping("/login")
-	public User  login(){
-		User u = new User();
-		u.setPassword("123456");
-		u.setId(1);
-		u.setState(0);
-		u.setUsername("xujian");
-	System.out.println(u);
-		return u;
+
+	public String  login( HttpServletRequest rs){
+		String username = rs.getParameter("username");
+		String password = rs.getParameter("password");
+		System.out.println(username);
+		System.out.println(password);
+		
+		int checkeuser = userService.checkeuser(username, password);
+		System.out.println(checkeuser);
+		return "ifrme/main";
+//		if(checkeuser>0)
+//		{
+//		return "ifrme/main";
+//		}
+//		else
+//		{
+//			return null;
+//
+//		}
+		}
+	@RequestMapping("/xujian")
+	public String main() {
+		ModelAndView mv=new ModelAndView("xujian");
+		mv.getView();
+		return "ifrme/main";
 	}
-	
+	@RequestMapping("/login1")
+	public String  login1( HttpServletRequest rs){
+		
+		System.out.println("111");
+		return "zhuce";
+	}
 	
 	
 	@RequestMapping("/regiester/{name}")

@@ -20,6 +20,9 @@ public interface UserDao extends BaseDao<User>{
 	@Select("select username from user where username = #{username}")
 	public List<String> selectByusername1(String username);
 	
+	@Select("select username from user where username = #{0} and password = #{1} " )
+	public List<String> checkuser(String username,String password);
+	
 	@Update("update user set username = #{username}")
 	public int updatebyname(String username);
 }

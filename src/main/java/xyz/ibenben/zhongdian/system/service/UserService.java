@@ -9,6 +9,6 @@ public interface UserService {
 	
 	public List<String> getusername(String name);
 	
-	
+	public int checkeuser(String username ,String password);
 	public int Update(String name);
 }

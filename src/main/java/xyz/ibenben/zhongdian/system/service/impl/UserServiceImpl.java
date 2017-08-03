@@ -2,16 +2,12 @@ package xyz.ibenben.zhongdian.system.service.impl;
 
 import java.util.List;
 
-import org.apache.ibatis.annotations.Select;
-import org.apache.ibatis.session.RowBounds;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import xyz.ibenben.zhongdian.common.BaseDao;
 import xyz.ibenben.zhongdian.system.dao.TaskDao;
 import xyz.ibenben.zhongdian.system.dao.UserDao;
-import xyz.ibenben.zhongdian.system.entity.Task;
 import xyz.ibenben.zhongdian.system.entity.User;
 import xyz.ibenben.zhongdian.system.service.UserService;
 
@@ -48,6 +44,13 @@ public class UserServiceImpl   implements UserService {
 		return updatebyname;
 	}
 
+	
+	public int checkeuser(String username ,String password)
+	{
+		List<String> checkuser = userDao.checkuser(username, password);
+		System.out.println(checkuser.size());
+		return checkuser.size();
+	}
 
 
 
