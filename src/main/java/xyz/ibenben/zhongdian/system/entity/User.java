@@ -7,6 +7,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
+import org.springframework.stereotype.Component;
+
 /**
  * 
  *
@@ -24,6 +26,7 @@ import javax.persistence.Id;
  *@Since:2017年7月21日  
  *@Version:1.1.0
  */
+@Component
 public class User implements Serializable {
 	@Override
 	public String toString() {
