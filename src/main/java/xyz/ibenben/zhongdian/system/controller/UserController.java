@@ -9,8 +9,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
+import xyz.ibenben.zhongdian.system.entity.User;
 import xyz.ibenben.zhongdian.system.service.UserService;
 
 @Controller
@@ -22,26 +24,19 @@ public class UserController {
 
 
 	
-	@RequestMapping("/login")
-	public ModelAndView  login( HttpServletRequest rs){
+	@RequestMapping(value ="/login" , method = RequestMethod.POST) 
+	public ModelAndView  login( User user){
 		
-		Map<String, String[]> parameterMap = rs.getParameterMap();
 		
-		String[] strings = parameterMap.get("username");
-		for (int i = 0; i < strings.length; i++) {
-			System.out.println(strings[i]);
-		}
-		String username = rs.getParameter("username");
-		String password = rs.getParameter("password");
+		String username = user.getUsername();
+		String password = user.getPassword();
 		System.out.println(username);
 		System.out.println(password);
 		ModelAndView ms= new ModelAndView();
 		ms.setViewName("iframe/main");
-		ms.addObject("username", username);
-		int checkeuser = userService.checkeuser(username, password);
-		System.out.println(checkeuser);
-		
-
+//		ms.addObject("username", username);
+//		int checkeuser = userService.checkeuser(username, password);
+//		System.out.println(checkeuser);
 		return ms;
 		}
 	
