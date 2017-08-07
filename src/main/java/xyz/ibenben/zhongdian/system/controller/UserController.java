@@ -5,74 +5,90 @@ import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
-import net.minidev.json.JSONObject;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
-import xyz.ibenben.zhongdian.system.dao.UserDao;
-import xyz.ibenben.zhongdian.system.entity.User;
 import xyz.ibenben.zhongdian.system.service.UserService;
 
 @Controller
-@RequestMapping("/system/user")
+@RequestMapping("/")
 public class UserController {
 	@Autowired
 	private UserService userService;
-	@Autowired
 
 
-	@RequestMapping("/regiester")
-	public String regiester1(Map<String, Object> model){
-		
 
-		
-		
-		model.put("msg", "添加成功");		
-		return "regiester";
-		
-	
-		
-	}
-	
-	
 	
 	@RequestMapping("/login")
-
-	public String  login( HttpServletRequest rs){
+	public ModelAndView  login( HttpServletRequest rs){
+		
+		Map<String, String[]> parameterMap = rs.getParameterMap();
+		
+		String[] strings = parameterMap.get("username");
+		for (int i = 0; i < strings.length; i++) {
+			System.out.println(strings[i]);
+		}
 		String username = rs.getParameter("username");
 		String password = rs.getParameter("password");
 		System.out.println(username);
 		System.out.println(password);
-		
+		ModelAndView ms= new ModelAndView();
+		ms.setViewName("iframe/main");
+		ms.addObject("username", username);
 		int checkeuser = userService.checkeuser(username, password);
 		System.out.println(checkeuser);
-		return "ifrme/main";
-//		if(checkeuser>0)
-//		{
-//		return "ifrme/main";
-//		}
-//		else
-//		{
-//			return null;
-//
-//		}
+		
+
+		return ms;
 		}
-	@RequestMapping("/xujian")
-	public String main() {
-		ModelAndView mv=new ModelAndView("xujian");
-		mv.getView();
-		return "ifrme/main";
+	
+
+
+	
+	
+
+	@RequestMapping("/loginone")
+
+	public String loginone() {
+		return "iframe/main";
 	}
+	
+	
+	@RequestMapping("/top")
+
+	public String top() {
+		return "iframe/top";
+	}
+	@RequestMapping("/center")
+
+	public String center() {
+		return "iframe/center";
+	}
+	
+	@RequestMapping("/main")
+
+	public String main() {
+		return "iframe/main";
+	}
+	
+	
+	@RequestMapping("/left")
+
+	public String left() {
+		return "iframe/left";
+	}
+	@RequestMapping("/right")
+	public String right() {
+		return "iframe/right";
+	}
+	
+	
 	@RequestMapping("/login1")
 	public String  login1( HttpServletRequest rs){
 		
-		System.out.println("111");
 		return "zhuce";
 	}
 	
@@ -89,18 +105,7 @@ public class UserController {
 	
 		
 	}
-	@RequestMapping("/update/{name}")
-	public String update(Map<String, Object> model ,@PathVariable String name){
-		
-		int update = userService.Update(name);
-		
-		
-		model.put("msg", update+"个已经被更新");		
-		return "regiester";
-		
 	
-		
-	}
 	
 	
 	
