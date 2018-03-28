@@ -16,7 +16,7 @@ import xyz.ibenben.zhongdian.system.entity.User;
 import xyz.ibenben.zhongdian.system.service.UserService;
 
 @Controller
-@RequestMapping("/")
+@RequestMapping("/a")
 public class UserController {
 	@Autowired
 	private UserService userService;
